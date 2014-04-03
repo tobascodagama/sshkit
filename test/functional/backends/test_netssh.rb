@@ -46,8 +46,8 @@ module SSHKit
           cd /opt/sites/example.com && /usr/bin/env date
           cd /opt/sites/example.com && /usr/bin/env ls -l /some/directory
           if test ! -d /opt/sites/example.com/tmp; then echo "Directory does not exist '/opt/sites/example.com/tmp'" 2>&1; false; fi
-          if ! sudo su -u root whoami > /dev/null; then echo "You cannot switch to user 'root' using sudo, please check the sudoers file" 2>&1; false; fi
-          cd /opt/sites/example.com/tmp && ( RAILS_ENV=production ( sudo su -u root /usr/bin/env touch restart.txt ) )
+          if ! sudo -u root whoami > /dev/null; then echo "You cannot switch to user 'root' using sudo, please check the sudoers file" 2>&1; false; fi
+          cd /opt/sites/example.com/tmp && ( RAILS_ENV=production ( sudo -u root /usr/bin/env touch restart.txt ) )
         EOEXPECTED
       end
 
